@@ -34,6 +34,8 @@ public:
     other.ptr_ = nullptr;
     other.count = nullptr;
     }
+	  return *this;
+  }
     shared_ptr(shared_ptr const& other)
 	{
 		ptr_ = other.ptr_;
