@@ -25,7 +25,7 @@ public:
 	unique_ptr<T> & operator=(unique_ptr<T> && Uptr)
 	{
 		if (this != std::adressof(Uptr))
-			std::swap(Uptr.ptr_);
+			swap(Uptr.ptr_);
 		return *this;
 	}
 
