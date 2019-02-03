@@ -1,4 +1,10 @@
 // не компилируется , писал по стандарту, вообще хз 
+struct nullopt_t
+	{	// no-value state indicator
+	struct _Tag {};
+	constexpr explicit nullopt_t(_Tag) {}
+	};
+
 template <class T>
 class my_opt {
 public:
