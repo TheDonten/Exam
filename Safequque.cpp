@@ -1,4 +1,6 @@
+#include "pch.h"
 #include <mutex>
+#include <iostream>
 #include <queue>
 #include <thread>
 
@@ -6,14 +8,22 @@ template <typename t>
 class threadsafe_queue
 {
 private:
-	mutable std::mutex mut;
+	std::mutex mut;
 	std::queue<t> data_queue;
-	std::condition_variable data_cond;
+
 public:
 	threadsafe_queue() {}
+	t pop()
+	{
+		std::lock_guard<std::mutex> lk(mut);
+		if (data_queue.empty())
+			return NULL;
+		t res = data_queue.front();
+		data_queue.pop();
+		return res;
+	}
 
-
-	bool try_pop(T& value)
+	bool try_pop(t& value)
 	{
 		std::lock_guard<std::mutex> lk(mut);
 		if (data_queue.empty())
