@@ -6,7 +6,7 @@ private:
 
 std::atomic_uint* count;
 T* ptr_;
-T* release() = delete;
+
 
 public:
   Shared_ptr(){
